@@ -1,0 +1,33 @@
+<nav class="nav-bar">
+  <a routerLink="/" class="nav-brand">pd-music</a>
+  <div class="nav-links">
+    <a routerLink="/search" routerLinkActive="active">Search</a>
+    <a routerLink="/listen" routerLinkActive="active">Listen</a>
+    <a routerLink="/favorites" routerLinkActive="active">Favorites</a>
+  </div>
+</nav>
+
+<main class="main-content">
+  <router-outlet />
+</main>
+
+@if (player.currentTrack(); as track) {
+  <div class="player-bar">
+    <div class="player-info">
+      <span class="player-title">{{ track.title }}</span>
+      <span class="player-artist">{{ track.artist }}</span>
+    </div>
+    <div class="player-controls">
+      <button class="btn-player" (click)="player.toggle()">
+        {{ player.isPlaying() ? 'Pause' : 'Play' }}
+      </button>
+    </div>
+    <div class="player-progress" (click)="onSeek($event)">
+      <div class="player-progress-bar" [style.width.%]="player.progress() * 100"></div>
+    </div>
+    <div class="player-time">
+      <span>{{ player.currentTime() | seconds }}</span>
+      <span>{{ player.duration() | seconds }}</span>
+    </div>
+  </div>
+}
