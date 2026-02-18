@@ -56,3 +56,16 @@ a {
   color: var(--text-primary);
   border: 1px solid var(--border);
 }
+
+/* ── Accessibility (WCAG AA) ── */
+:focus-visible {
+    outline: 3px solid currentColor;
+    outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
