@@ -17,6 +17,24 @@ export class PlayerService {
   readonly hasPrev = computed(() => this.queueIndex() > 0);
 
   private audio = new Audio();
+  private audioCtx: AudioContext | null = null;
+  private analyser: AnalyserNode | null = null;
+  private sourceNode: MediaElementAudioSourceNode | null = null;
+
+  getAnalyser(): AnalyserNode {
+    if (!this.analyser) {
+      this.audioCtx = new AudioContext();
+      this.analyser = this.audioCtx.createAnalyser();
+      this.analyser.fftSize = 128;
+      this.sourceNode = this.audioCtx.createMediaElementSource(this.audio);
+      this.sourceNode.connect(this.analyser);
+      this.analyser.connect(this.audioCtx.destination);
+    }
+    if (this.audioCtx?.state === 'suspended') {
+      this.audioCtx.resume();
+    }
+    return this.analyser;
+  }
 
   constructor() {
     this.audio.addEventListener('timeupdate', () => this.currentTime.set(this.audio.currentTime));

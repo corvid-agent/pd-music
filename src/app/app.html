@@ -25,6 +25,7 @@
       </button>
       <button class="btn-ctrl" [disabled]="!player.hasNext()" (click)="player.next()" title="Next">&#x23ED;</button>
     </div>
+    <canvas class="player-visualizer" #visualizer width="300" height="32"></canvas>
     <div class="player-progress" (click)="onSeek($event)">
       <div class="player-progress-bar" [style.width.%]="player.progress() * 100"></div>
     </div>
