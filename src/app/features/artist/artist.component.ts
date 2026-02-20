@@ -55,18 +55,18 @@ import { FavoritesService } from '../../core/services/favorites.service';
     .artist-header { margin-bottom: 1.5rem; }
     .artist-header h2 { margin: 0 0 0.5rem; }
     .artist-meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.75rem; }
-    .tag { font-size: 0.75rem; padding: 0.125rem 0.5rem; background: var(--tag-bg); border-radius: 4px; color: var(--text-secondary); }
-    .date { font-size: 0.85rem; color: var(--text-secondary); }
+    .tag { font-size: 0.875rem; padding: 0.125rem 0.5rem; background: var(--tag-bg); border-radius: 4px; color: var(--text-secondary); }
+    .date { font-size: 0.875rem; color: var(--text-secondary); }
     .disambig { color: var(--text-secondary); margin: 0.25rem 0 0; }
     .loading { padding: 1rem; text-align: center; color: var(--text-secondary); }
-    .error { padding: 0.75rem; background: #fee; color: #c00; border-radius: 6px; margin-bottom: 1rem; }
+    .error { padding: 0.75rem; background: #3d1c1c; color: #ff8a8a; border-radius: 6px; margin-bottom: 1rem; }
     h3 { margin: 0 0 0.75rem; }
     .releases { display: flex; flex-direction: column; gap: 0.5rem; }
     .release-item { display: block; padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border);
       border-radius: 6px; text-decoration: none; color: inherit; transition: border-color 0.2s; }
     .release-item:hover { border-color: var(--accent); }
     .release-title { font-weight: 600; margin-bottom: 0.25rem; }
-    .release-meta { display: flex; gap: 0.5rem; align-items: center; font-size: 0.85rem; color: var(--text-secondary); }
+    .release-meta { display: flex; gap: 0.5rem; align-items: center; font-size: 0.875rem; color: var(--text-secondary); }
     .empty { color: var(--text-secondary); }
   `]
 })

@@ -12,24 +12,35 @@ import { FavoritesService } from '../../core/services/favorites.service';
     <div class="listen-page">
       <h2>Browse Internet Archive</h2>
       <form (ngSubmit)="onSearch()" class="search-form">
+        <label for="listen-search-input" class="sr-only">Search for audio</label>
         <input
+          id="listen-search-input"
           type="text"
           [(ngModel)]="query"
           name="query"
           placeholder="Search for audio..."
           class="search-input"
+          aria-label="Search for audio"
         />
         <button type="submit" class="btn btn-primary">Search</button>
       </form>
 
       @if (archive.loading()) {
-        <div class="loading">Searching...</div>
+        <div class="loading" role="status" aria-live="polite">Searching...</div>
       }
 
       @if (!selectedItem) {
-        <div class="results">
+        <div class="results" role="list" aria-label="Search results">
           @for (item of archive.results(); track item.identifier) {
-            <div class="result-item" (click)="loadItem(item)">
+            <div
+              class="result-item"
+              role="listitem"
+              tabindex="0"
+              (click)="loadItem(item)"
+              (keydown.enter)="loadItem(item)"
+              (keydown.space)="$event.preventDefault(); loadItem(item)"
+              [attr.aria-label]="item.title + ' by ' + item.creator"
+            >
               <div class="result-title">{{ item.title }}</div>
               <div class="result-meta">
                 <span>{{ item.creator }}</span>
@@ -50,9 +61,17 @@ import { FavoritesService } from '../../core/services/favorites.service';
           </button>
 
           @if (archive.currentItem()?.files; as files) {
-            <div class="file-list">
+            <div class="file-list" role="list" aria-label="Audio files">
               @for (file of files; track file.name) {
-                <div class="file-item" (click)="playFile(file.name)">
+                <div
+                  class="file-item"
+                  role="listitem"
+                  tabindex="0"
+                  (click)="playFile(file.name)"
+                  (keydown.enter)="playFile(file.name)"
+                  (keydown.space)="$event.preventDefault(); playFile(file.name)"
+                  [attr.aria-label]="'Play ' + file.name"
+                >
                   <span class="file-name">{{ file.name }}</span>
                   <span class="file-meta">{{ file.format }}</span>
                 </div>
@@ -71,26 +90,29 @@ import { FavoritesService } from '../../core/services/favorites.service';
     h2 { margin: 0 0 1rem; }
     .search-form { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
     .search-input { flex: 1; padding: 0.6rem 0.75rem; border: 1px solid var(--border); border-radius: 6px;
-      font-size: 1rem; background: var(--surface); color: var(--text-primary); }
-    .search-input:focus { outline: none; border-color: var(--accent); }
+      font-size: 1rem; background: var(--surface); color: var(--text-primary); min-height: 44px; }
+    .search-input:focus { border-color: var(--accent); outline: 2px solid var(--accent); outline-offset: -2px; }
     .loading { padding: 1rem; text-align: center; color: var(--text-secondary); }
     .results { display: flex; flex-direction: column; gap: 0.5rem; }
     .result-item { padding: 0.75rem 1rem; background: var(--surface); border: 1px solid var(--border);
-      border-radius: 6px; cursor: pointer; transition: border-color 0.2s; }
-    .result-item:hover { border-color: var(--accent); }
+      border-radius: 6px; cursor: pointer; transition: border-color 0.2s; min-height: 44px; }
+    .result-item:hover,
+    .result-item:focus-visible { border-color: var(--accent); }
     .result-title { font-weight: 600; margin-bottom: 0.25rem; }
-    .result-meta { display: flex; gap: 0.5rem; font-size: 0.85rem; color: var(--text-secondary); }
+    .result-meta { display: flex; gap: 0.5rem; font-size: 0.875rem; color: var(--text-secondary); }
     .item-detail { margin-top: 0.5rem; }
     .back-btn { margin-bottom: 1rem; }
     h3 { margin: 0 0 0.25rem; }
     .item-creator { color: var(--text-secondary); margin: 0 0 0.75rem; }
     .file-list { display: flex; flex-direction: column; gap: 0.25rem; margin-top: 1rem; }
     .file-item { display: flex; justify-content: space-between; align-items: center; padding: 0.6rem 0.75rem;
-      background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 0.2s; }
-    .file-item:hover { border-color: var(--accent); }
+      background: var(--surface); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; transition: border-color 0.2s; min-height: 44px; }
+    .file-item:hover,
+    .file-item:focus-visible { border-color: var(--accent); }
     .file-name { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
-    .file-meta { color: var(--text-secondary); font-size: 0.85rem; flex-shrink: 0; margin-left: 0.5rem; }
+    .file-meta { color: var(--text-secondary); font-size: 0.875rem; flex-shrink: 0; margin-left: 0.5rem; }
     .empty { color: var(--text-secondary); }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
   `]
 })
 export class ListenComponent {

@@ -55,18 +55,18 @@ import { DurationPipe } from '../../shared/duration-pipe';
     .release-header { margin-bottom: 1.5rem; }
     .release-header h2 { margin: 0 0 0.5rem; }
     .release-meta { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.75rem; font-size: 0.9rem; color: var(--text-secondary); }
-    .tag { font-size: 0.75rem; padding: 0.125rem 0.5rem; background: var(--tag-bg); border-radius: 4px; }
+    .tag { font-size: 0.875rem; padding: 0.125rem 0.5rem; background: var(--tag-bg); border-radius: 4px; }
     .loading { padding: 1rem; text-align: center; color: var(--text-secondary); }
-    .error { padding: 0.75rem; background: #fee; color: #c00; border-radius: 6px; margin-bottom: 1rem; }
+    .error { padding: 0.75rem; background: #3d1c1c; color: #ff8a8a; border-radius: 6px; margin-bottom: 1rem; }
     h3 { margin: 0 0 0.75rem; }
     .recordings { display: flex; flex-direction: column; gap: 0.25rem; }
     .recording-item { display: flex; align-items: center; gap: 0.75rem; padding: 0.6rem 0.75rem;
       background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
-    .track-num { width: 1.5rem; text-align: right; color: var(--text-secondary); font-size: 0.85rem; flex-shrink: 0; }
+    .track-num { width: 1.5rem; text-align: right; color: var(--text-secondary); font-size: 0.875rem; flex-shrink: 0; }
     .track-info { flex: 1; min-width: 0; }
     .track-title { font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .track-artist { font-size: 0.85rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-    .track-duration { color: var(--text-secondary); font-size: 0.85rem; flex-shrink: 0; }
+    .track-artist { font-size: 0.875rem; color: var(--text-secondary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .track-duration { color: var(--text-secondary); font-size: 0.875rem; flex-shrink: 0; }
     .empty { color: var(--text-secondary); }
   `]
 })

@@ -169,7 +169,7 @@ interface FeaturedSection {
     }
 
     .card-creator {
-      font-size: 0.8rem;
+      font-size: 0.875rem;
       color: var(--text-secondary);
       white-space: nowrap;
       overflow: hidden;
@@ -178,8 +178,8 @@ interface FeaturedSection {
 
     .play-btn {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: var(--accent);
       border: none;
@@ -216,6 +216,23 @@ interface FeaturedSection {
 
     @keyframes spin {
       to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .play-btn {
+        transition: none;
+      }
+      .play-btn:hover:not(:disabled) {
+        transform: none;
+      }
+      .loading-spinner {
+        animation: none;
+        border-top-color: #fff;
+        opacity: 0.7;
+      }
+      .featured-card {
+        transition: none;
+      }
     }
   `]
 })

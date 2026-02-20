@@ -1,4 +1,4 @@
-<nav class="nav-bar">
+<nav class="nav-bar" aria-label="Main navigation">
   <a routerLink="/" class="nav-brand">pd-music</a>
   <div class="nav-links">
     <a routerLink="/search" routerLinkActive="active">Search</a>
@@ -7,31 +7,59 @@
   </div>
 </nav>
 
-<main class="main-content">
+<main id="main-content" class="main-content" aria-label="Page content">
   <router-outlet />
 </main>
 
 @if (player.currentTrack(); as track) {
-  <div class="player-bar">
+  <aside class="player-bar" role="region" aria-label="Audio player">
     <div class="player-info">
       <span class="player-title">{{ track.title }}</span>
       <span class="player-artist">{{ track.artist }}</span>
     </div>
     <div class="player-controls">
-      <button class="btn-ctrl" [class.active]="player.shuffleEnabled()" (click)="player.toggleShuffle()" title="Shuffle">&#x1F500;</button>
-      <button class="btn-ctrl" [disabled]="!player.hasPrev()" (click)="player.prev()" title="Previous">&#x23EE;</button>
-      <button class="btn-player" (click)="player.toggle()">
+      <button
+        class="btn-ctrl"
+        [class.active]="player.shuffleEnabled()"
+        (click)="player.toggleShuffle()"
+        [attr.aria-label]="player.shuffleEnabled() ? 'Disable shuffle' : 'Enable shuffle'"
+        [attr.aria-pressed]="player.shuffleEnabled()"
+      >&#x1F500;</button>
+      <button
+        class="btn-ctrl"
+        [disabled]="!player.hasPrev()"
+        (click)="player.prev()"
+        aria-label="Previous track"
+      >&#x23EE;</button>
+      <button class="btn-player" (click)="player.toggle()" [attr.aria-label]="player.isPlaying() ? 'Pause' : 'Play'">
         {{ player.isPlaying() ? 'Pause' : 'Play' }}
       </button>
-      <button class="btn-ctrl" [disabled]="!player.hasNext()" (click)="player.next()" title="Next">&#x23ED;</button>
+      <button
+        class="btn-ctrl"
+        [disabled]="!player.hasNext()"
+        (click)="player.next()"
+        aria-label="Next track"
+      >&#x23ED;</button>
     </div>
-    <canvas class="player-visualizer" #visualizer width="300" height="32"></canvas>
-    <div class="player-progress" (click)="onSeek($event)">
+    <canvas class="player-visualizer" #visualizer width="300" height="32" aria-hidden="true"></canvas>
+    <div
+      class="player-progress"
+      (click)="onSeek($event)"
+      (keydown.arrowRight)="player.seek(player.currentTime() + 5)"
+      (keydown.arrowLeft)="player.seek(player.currentTime() - 5)"
+      role="slider"
+      tabindex="0"
+      aria-label="Seek"
+      [attr.aria-valuenow]="player.currentTime() | number:'1.0-0'"
+      [attr.aria-valuemin]="0"
+      [attr.aria-valuemax]="player.duration() | number:'1.0-0'"
+      [attr.aria-valuetext]="(player.currentTime() | seconds) + ' of ' + (player.duration() | seconds)"
+    >
       <div class="player-progress-bar" [style.width.%]="player.progress() * 100"></div>
     </div>
-    <div class="player-time">
+    <div class="player-time" aria-hidden="true">
       <span>{{ player.currentTime() | seconds }}</span>
       <span>{{ player.duration() | seconds }}</span>
     </div>
-  </div>
+  </aside>
 }

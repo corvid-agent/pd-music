@@ -1,12 +1,13 @@
 import { Component, inject, ViewChild, ElementRef, effect, OnDestroy } from '@angular/core';
 import { RouterOutlet, RouterLink, RouterLinkActive } from '@angular/router';
+import { DecimalPipe } from '@angular/common';
 import { PlayerService } from './core/services/player.service';
 import { SecondsPipe } from './shared/seconds-pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink, RouterLinkActive, SecondsPipe],
+  imports: [RouterOutlet, RouterLink, RouterLinkActive, SecondsPipe, DecimalPipe],
   templateUrl: './app.html',
   styleUrl: './app.css',
 })
