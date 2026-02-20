@@ -18,9 +18,12 @@
       <span class="player-artist">{{ track.artist }}</span>
     </div>
     <div class="player-controls">
+      <button class="btn-ctrl" [class.active]="player.shuffleEnabled()" (click)="player.toggleShuffle()" title="Shuffle">&#x1F500;</button>
+      <button class="btn-ctrl" [disabled]="!player.hasPrev()" (click)="player.prev()" title="Previous">&#x23EE;</button>
       <button class="btn-player" (click)="player.toggle()">
         {{ player.isPlaying() ? 'Pause' : 'Play' }}
       </button>
+      <button class="btn-ctrl" [disabled]="!player.hasNext()" (click)="player.next()" title="Next">&#x23ED;</button>
     </div>
     <div class="player-progress" (click)="onSeek($event)">
       <div class="player-progress-bar" [style.width.%]="player.progress() * 100"></div>

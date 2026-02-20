@@ -93,7 +93,24 @@
   grid-row: 1;
   display: flex;
   align-items: center;
+  gap: 0.25rem;
 }
+
+.btn-ctrl {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  border-radius: 4px;
+  transition: color 0.15s;
+  line-height: 1;
+}
+
+.btn-ctrl:hover { color: var(--accent); }
+.btn-ctrl.active { color: var(--accent); }
+.btn-ctrl:disabled { opacity: 0.3; cursor: not-allowed; }
 
 .btn-player {
   background: var(--accent);
