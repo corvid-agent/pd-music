@@ -1,3 +1,5 @@
+<p align="center"><img src="docs/preview.png" alt="pd-music preview" width="100%"></p>
+
 # PD Music
 
 Browse and stream public domain music from MusicBrainz and the Internet Archive. Explore artist catalogs, albums, and tracks.
