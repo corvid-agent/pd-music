@@ -1,0 +1,18 @@
+{
+  "name": "PD Music",
+  "short_name": "Music",
+  "description": "Public domain music streaming from the Internet Archive with shuffle, queue, and audio visualizer.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0a0a0f",
+  "theme_color": "#0a0a0f",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='96' fill='%230a0a0f'/><text x='50%25' y='55%25' text-anchor='middle' dominant-baseline='central' font-size='280'>🎵</text></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
